@@ -57,18 +57,40 @@ if( isset($_POST['email']) && isset($_POST['pass']) ){
     require_once "connect.php";
     try
     {
-        $query="SELECT * from uzytkownicy where  adres_email= :email AND `password` = :pass";
+        $query="SELECT * from uzytkownicy where  adres_email= :email";
         $statement = $db->prepare($query);
         $statement->bindParam(':email', $_POST['email']);
-        $statement->bindParam(':pass', $_POST['pass']);
+//        $statement->bindParam(':pass', $_POST['pass']);
         $statement->execute();
-//        $row=$statement->fetch(PDO::FETCH_ASSOC);
-        if($statement->rowCount()>0)
+        $row=$statement->fetch(PDO::FETCH_ASSOC);
+         $ile=$statement->rowCount();
+        if($ile>0)
         {
-            $_SESSION['email']=$_POST['email'];
-            $_SESSION['zalogowany']=true;
-            header('Location: index.php');
-            exit();
+
+
+            if(password_verify($_POST['pass'], $row['password'])) {
+                echo "jestem w 2 if";
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['zalogowany'] = true;
+                $_SESSION['isAdmin']=$row['is_admin'];
+                $_SESSION['id']=$row['id'];
+                setcookie('imie', $row['imie'], time()+3600 );
+                setcookie('nazwisko', $row['nazwisko'], time()+3600);
+                setcookie('email', $row['adres_email'], time()+3600);
+
+
+
+                if($_SESSION['isAdmin']) {
+                    header('Location: admin.php');
+                    exit();
+                }
+                else{
+                    header('Location: index.php');
+                }
+            }
+            else{
+                echo "nie ma takiego numeru1";
+            }
         }
         else
         {

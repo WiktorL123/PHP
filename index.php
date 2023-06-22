@@ -19,6 +19,10 @@ session_start()
 
 </style>
     <link rel="stylesheet" href="style.css">
+<!--    <script>-->
+<!--        alert("Uwaga ta strona wykorzystuje ciasteczka")-->
+<!---->
+<!--    </script>-->
 </head>
 <body>
 <div id="container">
@@ -71,6 +75,8 @@ session_start()
         <p>Zalogowano jako: <?php echo $_SESSION['email']?>
             <?php endif; ?>
         </p>
+
+
         </h2>
 
 <!--        <div class="produkt">-->
@@ -91,10 +97,10 @@ session_start()
 
             echo '<div id="produkty">';
 //        var_dump($_POST);
-            $host = "localhost";
-            $db_name = "sklep";
-            $user = "root";
-            $pass = "";
+            $host="szuflandia";
+            $db_name="s27439";
+            $user="s27439";
+            $pass="Wik.Lema";
             try {
                 $con = new PDO("mysql:host=$host;dbname=$db_name", $user, $pass);
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -192,7 +198,11 @@ session_start()
             }
             echo "</div>";
 
-        ?>
+
+            ?>
+
+
+
 
         </div>
 

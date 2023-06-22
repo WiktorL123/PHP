@@ -109,4 +109,10 @@ input:focus:-ms-input-placeholder
 {
     color: #428C42;
 }
+a:hover{
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
 

@@ -1,13 +1,13 @@
 <?php
-$host="localhost";
-$db_name="sklep";
-$user="root";
-$pass="";
+ 	    $host="szuflandia";
+            $db_name="s27439";
+            $user="s27439";
+            $pass="Wik.Lema";
 try {
     $db = new PDO("mysql:host=$host;dbname=$db_name", $user, $pass);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // echo "udalo sie";
+//     echo "udalo sie";
 }
 catch (PDOException $e){
-    echo "błąd połączenia kod błedu: ".$e->getCode()." ".$e->getMessage();
+    echo "błąd: ".$e->getMessage()."kod błędu: ".$e->getCode();
 }
